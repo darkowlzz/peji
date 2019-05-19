@@ -1,0 +1,104 @@
+{
+  "catalog": [
+    {
+      "category": "doloremque",
+      "items": [
+        {
+          "id": "101",
+          "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/laugh.gif",
+          "title": "tempor incididunt",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": true,
+          "price": 10,
+          "button": ""
+        },
+        {
+          "id": "102",
+          "image": "https://media.tenor.com/images/b31aee1d14ea0e78467f0d4a8c9360a0/tenor.gif",
+          "title": "magna aliqua",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": false,
+          "price": 15,
+          "button": ""
+        },
+        {
+          "id": "103",
+          "image": "https://media.tenor.com/images/3fcc1b897b5dccb2a5edda6fb0d78e59/tenor.gif",
+          "title": "sit amet",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": true,
+          "price": 12,
+          "button": ""
+        },
+        {
+          "id": "104",
+          "image": "https://media.discordapp.net/attachments/447673575617462293/575387386335199232/Untitled_Artwork.jpg",
+          "title": "omnis iste",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": true,
+          "price": 20,
+          "button": ""
+        },
+        {
+          "id": "105",
+          "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/fallout-76-emote.jpg",
+          "title": "adipiscing elit",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": true,
+          "price": 5,
+          "button": ""
+        }
+      ]
+    },
+    {
+      "category": "aliqua",
+      "items": [
+        {
+          "id": "106",
+          "image": "https://media.discordapp.net/attachments/447673575617462293/575387386335199232/Untitled_Artwork.jpg",
+          "title": "voluptatem",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": true,
+          "price": 9,
+          "button": ""
+        },
+        {
+          "id": "107",
+          "image": "https://media.tenor.com/images/b31aee1d14ea0e78467f0d4a8c9360a0/tenor.gif",
+          "title": "natus error",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": true,
+          "price": 10,
+          "button": ""
+        },
+        {
+          "id": "108",
+          "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/laugh.gif",
+          "title": "Sed ut",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": true,
+          "price": 20,
+          "button": ""
+        },
+        {
+          "id": "109",
+          "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/face.png",
+          "title": "laudantium",
+          "description": "Some description",
+          "publishDate": "1st Jan, 2019",
+          "available": true,
+          "price": 5,
+          "button": ""
+        }
+      ]
+    }
+  ]
+}
