@@ -78,6 +78,23 @@ def get_all(days):
         print(i)
 
 
+def truncate_all_buttons(configfile):
+    """Truncates buttons of all the items in the given config file."""
+    with open(configfile, 'r+') as json_file:
+        data = json.load(json_file)
+        for item in next_item(data):
+            if item['button']:
+                click.echo('truncating button for %r' % item['title'])
+                item['button'] = ''
+
+        write_to_file(data, json_file)
+
+
+def update_site_config_data_url(configfile, url):
+    with open(configfile, 'w') as file:
+        file.write(f"var dataURL = \"{url}\"")
+
+
 @click.group()
 def cli():
     """The main Click cli function."""
@@ -111,7 +128,47 @@ def delete_all_for_days(days):
     delete_all(days)
 
 
+############ Config Subcommand ###########
+
+@click.group()
+def config():
+    """Group of commands to process the config file."""
+
+
+@click.command()
+@click.argument('configfile')
+def truncate_buttons(configfile):
+    """Truncates all the buttons."""
+    truncate_all_buttons(configfile)
+
+
+############ Site Subcommand ############
+
+@click.group()
+def site():
+    """Group of commands for processing site config."""
+
+
+@click.command()
+@click.argument('configfile', nargs=1)
+@click.argument('url', nargs=1)
+def update_site_data(configfile, url):
+    """Update data url in the given site config."""
+    update_site_config_data_url(configfile, url)
+
+
+# Add commands to config subcommand group.
+config.add_command(truncate_buttons)
+
+
+# Add commands to site subcommand group.
+site.add_command(update_site_data)
+
+
+# Add commands to cli command group.
 cli.add_command(make)
 cli.add_command(delete)
 cli.add_command(get_all_buttons)
 cli.add_command(delete_all_for_days)
+cli.add_command(config)
+cli.add_command(site)
