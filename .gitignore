@@ -4,3 +4,4 @@ init_env
 *.egg-info
 init_env.sh
 __pycache__
+.pytest_cache/

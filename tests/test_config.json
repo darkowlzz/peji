@@ -1,6 +1,66 @@
 {
+  "title": "DarkHoles",
+  "title-lead": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "title-sublead": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam",
+  "title-logo": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/face.png",
+  "primary-background": "black",
+  "secondary-background": "#f2f5f7",
+  "info": [
+    {
+      "title": "Other Pages",
+      "items": [
+        {
+          "name": "Gaming",
+          "link": ""
+        },
+        {
+          "name": "Music",
+          "link": ""
+        },
+        {
+          "name": "Books",
+          "link": ""
+        },
+        {
+          "name": "Thoughts",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "title": "Resources",
+      "items": [
+        {
+          "name": "Twitter",
+          "link": ""
+        },
+        {
+          "name": "Discord",
+          "link": ""
+        },
+        {
+          "name": "Twitch",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "title": "About",
+      "items": [
+        {
+          "name": "Privacy",
+          "link": ""
+        },
+        {
+          "name": "Terms",
+          "link": ""
+        }
+      ]
+    }
+  ],
   "catalog": [
     {
+      "id": "1",
       "category": "doloremque",
       "items": [
         {
@@ -56,6 +116,7 @@
       ]
     },
     {
+      "id": "2",
       "category": "aliqua",
       "items": [
         {

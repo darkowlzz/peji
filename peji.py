@@ -6,6 +6,7 @@ import json
 import sys
 import click
 import buttons
+import os
 
 
 def next_item(data):
@@ -91,8 +92,36 @@ def truncate_all_buttons(configfile):
 
 
 def update_site_config_data_url(configfile, url):
+    """Updates data URL in the site config file."""
     with open(configfile, 'w') as file:
         file.write(f"var dataURL = \"{url}\"")
+
+
+def generate_site_data_files(configfile):
+    """Reads the master config file, creates a site config file and data files"""
+    with open(configfile, 'r') as json_file:
+        data = json.load(json_file)
+        # Ensure that public/data dir exists.
+        site_data_dir = os.path.join('public', 'data')
+        if not os.path.exists(site_data_dir):
+            os.makedirs(site_data_dir)
+        # Create data files for each catalog entry.
+        for cat in data['catalog']:
+            cat_file_path = os.path.join(site_data_dir, cat['id']+'.json')
+            click.echo('generating catalog data file %r' % cat_file_path)
+            with open(cat_file_path, 'w') as cat_file:
+                json.dump(cat, cat_file, indent=2)
+            # Delete category item list from config.
+            del cat['items']
+            # Add relative links to the data files in the config file. This path
+            # should be relative to the public dir.
+            cat['dataURL'] = os.path.relpath(cat_file_path, 'public')
+
+        # Write site config.
+        site_config_path = os.path.join('public', 'config.json')
+        click.echo('generating site config %r' % site_config_path)
+        with open(site_config_path, 'w') as config_file:
+            json.dump(data, config_file, indent=2)
 
 
 @click.group()
@@ -157,12 +186,20 @@ def update_site_data(configfile, url):
     update_site_config_data_url(configfile, url)
 
 
+@click.command()
+@click.argument('configfile')
+def generate_site_data(configfile):
+    """Generate all the site data files, including the site config data."""
+    generate_site_data_files(configfile)
+
+
 # Add commands to config subcommand group.
 config.add_command(truncate_buttons)
 
 
 # Add commands to site subcommand group.
 site.add_command(update_site_data)
+site.add_command(generate_site_data)
 
 
 # Add commands to cli command group.
