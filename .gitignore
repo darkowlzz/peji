@@ -5,3 +5,4 @@ init_env
 init_env.sh
 __pycache__
 .pytest_cache/
+public/
