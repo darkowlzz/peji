@@ -100,7 +100,7 @@ class ShopGenerator(PageGenerator):
             <h5>{{title}}</h5>
             <ul class="list-unstyled text-small">
             {{#each items}}
-            <li><a class="text-muted" href="{{link}}">{{name}}</a></li>
+            <li><a class="text-muted" href="{{link}}" target="_blank">{{name}}</a></li>
             {{/each}}
             </ul>
         </div>
