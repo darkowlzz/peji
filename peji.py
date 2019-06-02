@@ -1,13 +1,13 @@
 """
-peji cli helps interact with peji config file.
+peji command line interface.
 """
 
 import json
 import sys
+import os
 import click
 import buttons
-import page_generator
-import os
+from page import page_generator
 
 
 def next_item(data):
@@ -128,9 +128,7 @@ def generate_site_files(configfile):
         if not os.path.exists(public_dir):
             os.makedirs(public_dir)
 
-        page_generator.generate_html(data)
-        page_generator.generate_css(data)
-        page_generator.generate_js(data)
+        page_generator.generate_page(data)
 
 
 ############ Config Subcommand ###########
@@ -151,11 +149,11 @@ def truncate_buttons(configfile):
 config.add_command(truncate_buttons)
 
 
-############ Site Subcommand ############
+############ Page Subcommand ############
 
 @click.group()
-def site():
-    """Group of commands for generating site."""
+def page():
+    """Group of commands for generating site page."""
 
 
 @click.command()
@@ -172,9 +170,9 @@ def generate_site(configfile):
     generate_site_files(configfile)
 
 
-# Add commands to site subcommand group.
-site.add_command(generate_site_data)
-site.add_command(generate_site)
+# Add commands to page subcommand group.
+page.add_command(generate_site_data)
+page.add_command(generate_site)
 
 
 ############ Button Subcommand ############
@@ -228,5 +226,5 @@ def cli():
 
 # Add commands to cli command group.
 cli.add_command(config)
-cli.add_command(site)
+cli.add_command(page)
 cli.add_command(button)

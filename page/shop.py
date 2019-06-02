@@ -1,8 +1,11 @@
 from bs4 import BeautifulSoup
+from . import PageGenerator
 
 
-def generate_html(data):
-    template = '''
+class ShopGenerator(PageGenerator):
+
+    def generate_html(self, data):
+        template = '''
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +64,7 @@ def generate_html(data):
     <!-- no-gutters removes the extra space between the children elements. -->
     <div class="row no-gutters justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center">
     {{#each items}}
-    <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="col-sm-8 col-md-6 col-lg-4">
         <div class="card bg-dark mb-2 mt-2 ml-2 mr-2">
         <img src="{{image}}" class="card-img-top cover" id="{{id}}">
         <div class="card-body">
@@ -124,16 +127,14 @@ def generate_html(data):
 
 </html>
 '''
+        soup = BeautifulSoup(template, 'html.parser')
+        soup.title.string = data['title']
+        # print(soup)
+        with open('public/index.html', 'w') as html_file:
+            html_file.write(soup.prettify())
 
-    soup = BeautifulSoup(template, 'html.parser')
-    soup.title.string = data['title']
-    # print(soup)
-    with open('public/index.html', 'w') as html_file:
-        html_file.write(soup.prettify())
-
-
-def generate_css(data):
-    template = '''
+    def generate_css(self, data):
+        template = '''
 .fw-body {
     background: whitesmoke !important;
 }
@@ -240,12 +241,11 @@ def generate_css(data):
   }
 }
 '''
-    with open('public/style.css', 'w') as css_file:
-        css_file.write(template)
+        with open('public/style.css', 'w') as css_file:
+            css_file.write(template)
 
-
-def generate_js(data):
-    template = '''
+    def generate_js(self, data):
+        template = '''
 $(document).ready(function () {
 
   var modal = document.getElementById('myModal');
@@ -320,5 +320,5 @@ function buildCatalog(data) {
   }
 }
 '''
-    with open('public/index.js', 'w') as js_file:
-        js_file.write(template)
+        with open('public/index.js', 'w') as js_file:
+            js_file.write(template)
