@@ -6,6 +6,7 @@ import json
 import sys
 import click
 import buttons
+import page_generator
 import os
 
 
@@ -32,7 +33,7 @@ def write_to_file(data, file_desc):
     json.dump(data, file_desc, indent=2)
 
 
-def make_buttons(configfile):
+def make_paypal_buttons(configfile):
     """Takes a config json file, parses it for catalog items and creates paypal
     buttons for the items.
     """
@@ -48,7 +49,7 @@ def make_buttons(configfile):
         write_to_file(data, json_file)
 
 
-def delete_buttons(configfile):
+def delete_paypal_buttons_from_config(configfile):
     """Takes a config json file, parses it for catalog items and deletes the
     associated paypal buttons for the items.
     """
@@ -64,7 +65,7 @@ def delete_buttons(configfile):
         write_to_file(data, json_file)
 
 
-def delete_all(days):
+def delete_all_paypal_buttons_for_days(days):
     """Deletes all the buttons created in within the given days."""
     btn_ids = buttons.get_all_buttons(int(days))
     for i in btn_ids:
@@ -72,7 +73,7 @@ def delete_all(days):
         buttons.delete_button(i)
 
 
-def get_all(days):
+def get_all_paypal_buttons(days):
     """Prints the IDs of all the buttons created in the given days."""
     btn_ids = buttons.get_all_buttons(int(days))
     for i in btn_ids:
@@ -89,12 +90,6 @@ def truncate_all_buttons(configfile):
                 item['button'] = ''
 
         write_to_file(data, json_file)
-
-
-def update_site_config_data_url(configfile, url):
-    """Updates data URL in the site config file."""
-    with open(configfile, 'w') as file:
-        file.write(f"var dataURL = \"{url}\"")
 
 
 def generate_site_data_files(configfile):
@@ -124,37 +119,18 @@ def generate_site_data_files(configfile):
             json.dump(data, config_file, indent=2)
 
 
-@click.group()
-def cli():
-    """The main Click cli function."""
+def generate_site_files(configfile):
+    """Reads the configfile and generates site code based on the config"""
+    with open(configfile, 'r') as json_file:
+        data = json.load(json_file)
+        public_dir = 'public'
+        # Create public dir if not exists.
+        if not os.path.exists(public_dir):
+            os.makedirs(public_dir)
 
-
-@click.command()
-@click.argument('configfile')
-def make(configfile):
-    """Make buttons for all the items in the config file."""
-    make_buttons(configfile)
-
-
-@click.command()
-@click.argument('configfile')
-def delete(configfile):
-    """Delete buttons from all the items in the config file."""
-    delete_buttons(configfile)
-
-
-@click.command()
-@click.argument('days')
-def get_all_buttons(days):
-    """Print IDs of all the buttons created in the given days."""
-    get_all(days)
-
-
-@click.command()
-@click.argument('days')
-def delete_all_for_days(days):
-    """Deletes all the buttons created within the given days."""
-    delete_all(days)
+        page_generator.generate_html(data)
+        page_generator.generate_css(data)
+        page_generator.generate_js(data)
 
 
 ############ Config Subcommand ###########
@@ -171,19 +147,15 @@ def truncate_buttons(configfile):
     truncate_all_buttons(configfile)
 
 
+# Add commands to config subcommand group.
+config.add_command(truncate_buttons)
+
+
 ############ Site Subcommand ############
 
 @click.group()
 def site():
-    """Group of commands for processing site config."""
-
-
-@click.command()
-@click.argument('configfile', nargs=1)
-@click.argument('url', nargs=1)
-def update_site_data(configfile, url):
-    """Update data url in the given site config."""
-    update_site_config_data_url(configfile, url)
+    """Group of commands for generating site."""
 
 
 @click.command()
@@ -193,19 +165,68 @@ def generate_site_data(configfile):
     generate_site_data_files(configfile)
 
 
-# Add commands to config subcommand group.
-config.add_command(truncate_buttons)
+@click.command()
+@click.argument('configfile')
+def generate_site(configfile):
+    """Generate html, js and css files for the site."""
+    generate_site_files(configfile)
 
 
 # Add commands to site subcommand group.
-site.add_command(update_site_data)
 site.add_command(generate_site_data)
+site.add_command(generate_site)
+
+
+############ Button Subcommand ############
+
+@click.group()
+def button():
+    """Group of commands related to paypal buttons."""
+
+
+@click.command()
+@click.argument('configfile')
+def make_buttons(configfile):
+    """Make buttons for all the items in the config file."""
+    make_paypal_buttons(configfile)
+
+
+@click.command()
+@click.argument('configfile')
+def delete_all_buttons(configfile):
+    """Delete buttons from all the items in the config file."""
+    delete_paypal_buttons_from_config(configfile)
+
+
+@click.command()
+@click.argument('days')
+def get_all_buttons(days):
+    """Print IDs of all the buttons created in the given days."""
+    get_all_paypal_buttons(days)
+
+
+@click.command()
+@click.argument('days')
+def delete_all_buttons_for_days(days):
+    """Deletes all the buttons created within the given days."""
+    delete_all_paypal_buttons_for_days(days)
+
+
+# Add commands to button subcommand group.
+button.add_command(make_buttons)
+button.add_command(delete_all_buttons)
+button.add_command(get_all_buttons)
+button.add_command(delete_all_buttons_for_days)
+
+
+############ Cli root commands #############
+
+@click.group()
+def cli():
+    """Configure and generate peji site."""
 
 
 # Add commands to cli command group.
-cli.add_command(make)
-cli.add_command(delete)
-cli.add_command(get_all_buttons)
-cli.add_command(delete_all_for_days)
 cli.add_command(config)
 cli.add_command(site)
+cli.add_command(button)

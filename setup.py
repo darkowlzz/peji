@@ -7,7 +7,7 @@ from setuptools import setup
 setup(
     name='peji',
     version='0.1.0',
-    py_modules=['peji', 'buttons'],
+    py_modules=['peji', 'buttons', 'page_generator'],
     install_requires=[
         'Click',
         'bs4',
