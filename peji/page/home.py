@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from . import PageGenerator
+from peji.page import PageGenerator
 
 
 class HomeGenerator(PageGenerator):
@@ -18,7 +18,7 @@ class HomeGenerator(PageGenerator):
     <!-- Handlebars -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.js" type="text/javascript">
     </script>
-    <title></title>
+    <title>{{ title }}</title>
 </head>
 
 <body>

@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-from .home import HomeGenerator
-from .shop import ShopGenerator
+from peji.page.home import HomeGenerator
+from peji.page.shop import ShopGenerator
 from . import SiteType, SITE_TYPE
 import sys
 

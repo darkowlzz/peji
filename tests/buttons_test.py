@@ -2,7 +2,7 @@
 Buttons Tests.
 """
 
-import buttons
+from peji import buttons
 import peji
 
 

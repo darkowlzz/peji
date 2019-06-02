@@ -1,13 +1,13 @@
 """
-peji command line interface.
+peji command line interface
 """
 
 import json
 import sys
 import os
 import click
-import buttons
-from page import page_generator
+from peji import buttons
+from peji.page import page_generator
 
 
 def next_item(data):
