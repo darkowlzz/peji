@@ -101,16 +101,20 @@ def generate_site_data_files(configfile):
         if not os.path.exists(site_data_dir):
             os.makedirs(site_data_dir)
         # Create data files for each catalog entry.
-        for cat in data['catalog']:
-            cat_file_path = os.path.join(site_data_dir, cat['id']+'.json')
-            click.echo('generating catalog data file %r' % cat_file_path)
-            with open(cat_file_path, 'w') as cat_file:
-                json.dump(cat, cat_file, indent=2)
-            # Delete category item list from config.
-            del cat['items']
-            # Add relative links to the data files in the config file. This path
-            # should be relative to the public dir.
-            cat['dataURL'] = os.path.relpath(cat_file_path, 'public')
+        try:
+            for cat in data['catalog']:
+                cat_file_path = os.path.join(site_data_dir, cat['id']+'.json')
+                click.echo('generating catalog data file %r' % cat_file_path)
+                with open(cat_file_path, 'w') as cat_file:
+                    json.dump(cat, cat_file, indent=2)
+                # Delete category item list from config.
+                del cat['items']
+                # Add relative links to the data files in the config file. This path
+                # should be relative to the public dir.
+                cat['dataURL'] = os.path.relpath(cat_file_path, 'public')
+        except KeyError as error:
+            click.echo('no %r found, generating rest of the files...' %
+                       error.args)
 
         # Write site config.
         site_config_path = os.path.join('public', 'config.json')

@@ -129,7 +129,6 @@ class ShopGenerator(PageGenerator):
 '''
         soup = BeautifulSoup(template, 'html.parser')
         soup.title.string = data['title']
-        # print(soup)
         with open('public/index.html', 'w') as html_file:
             html_file.write(soup.prettify())
 

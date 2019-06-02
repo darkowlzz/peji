@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from .home import HomeGenerator
 from .shop import ShopGenerator
 from . import SiteType, SITE_TYPE
 import sys
@@ -13,10 +14,10 @@ def generate_page(data):
         sys.exit('Unknown site type %r' % error.args)
 
     if siteType == SiteType.HOME:
-        print("Generating Home site")
-        pass
+        print("Generating Home site...")
+        site_generator = HomeGenerator()
     elif siteType == SiteType.SHOP:
-        print("Generating Shop site")
+        print("Generating Shop site...")
         site_generator = ShopGenerator()
     else:
         print("Unknown site type")

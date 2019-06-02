@@ -1,0 +1,75 @@
+{
+  "siteType": "HOME",
+  "title": "DarkHoles",
+  "title-lead": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "title-sublead": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam",
+  "title-logo": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/face.png",
+  "primary-background": "#f2f5f7",
+  "secondary-background": "black",
+  "info": [
+    {
+      "title": "Other Pages",
+      "items": [
+        {
+          "name": "Gaming",
+          "link": ""
+        },
+        {
+          "name": "Music",
+          "link": ""
+        },
+        {
+          "name": "Books",
+          "link": ""
+        },
+        {
+          "name": "Thoughts",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "title": "Social",
+      "items": [
+        {
+          "name": "Twitter",
+          "link": "https://twitter.com/darkowlzz",
+          "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/Twitter_Logo_Blue.png"
+        },
+        {
+          "name": "Discord",
+          "link": "https://discordapp.com",
+          "image": "https://discordapp.com/assets/2c21aeda16de354ba5334551a883b481.png"
+        },
+        {
+          "name": "Twitch",
+          "link": "https://twitch.com/darkowlzz",
+          "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/Combo_Purple_RGB.png"
+        },
+        {
+          "name": "Discord",
+          "link": "https://discordapp.com",
+          "image": "https://discordapp.com/assets/2c21aeda16de354ba5334551a883b481.png"
+        },
+        {
+          "name": "Twitch",
+          "link": "https://twitch.com/darkowlzz",
+          "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/Combo_Purple_RGB.png"
+        }
+      ]
+    },
+    {
+      "title": "About",
+      "items": [
+        {
+          "name": "Privacy",
+          "link": ""
+        },
+        {
+          "name": "Terms",
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
