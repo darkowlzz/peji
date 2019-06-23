@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://darkowlzz.space/peji/home.schema.json",
+    "title": "Home Site Config",
+    "description": "Peji site config for home page",
+    "type": "object",
+    "properties": {
+        "siteType": {
+            "description": "Peji site type",
+            "type": "string"
+        },
+        "title": {
+            "description": "Title of the site",
+            "type": "string"
+        },
+        "title-lead": {
+            "description": "Head title/subtext",
+            "type": "string"
+        },
+        "title-logo": {
+            "description": "Site logo URL",
+            "type": "string"
+        },
+        "primary-background": {
+            "description": "Primary color of the site",
+            "type": "string"
+        },
+        "on-air-id": {
+            "description": "Periscope user ID for on-air widget",
+            "type": "string"
+        },
+        "info": {
+            "description": "Informational content",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Name of the info",
+                        "type": "string"
+                    },
+                    "link": {
+                        "description": "External website link",
+                        "type": "string"
+                    },
+                    "image": {
+                        "description": "Image link",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "link"
+                ],
+                "uniqueItems": true
+            }
+        }
+    },
+    "required": [
+        "siteType",
+        "title"
+    ]
+}

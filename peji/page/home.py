@@ -53,10 +53,15 @@ class HomeGenerator(PageGenerator):
     <script id="social-hb" type="text/x-handlebars-template">
         <div class="container social">
             <div class="row justify-content-center">
-                {{#each items}}
+                {{#each this}}
                 <div class="col-sm-6 col-md col-lg-4">
                     <a href="{{link}}" target="_blank">
+                        <!-- Insert image is provided, else use the item name -->
+                        {{#if image}}
                         <img src="{{image}}" class="social-logo" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        {{else}}
+                        <p>{{name}}</p>
+                        {{/if}}
                     </a>
                 </div>
                 {{/each}}
@@ -147,19 +152,10 @@ $(document).ready(function () {
       $("body").css("background", data["primary-background"])
       $("body").css("color", data["secondary-background"])
 
-      // Get social info.
-      let socialInfo
-      for (let info of data["info"]) {
-        if (info["title"] == "Social") {
-          socialInfo = info
-          break
-        }
-      }
-
-      // Social
+      // Info
       var socialTemplate = $("#social-hb").html()
       var socialTemplateScript = Handlebars.compile(socialTemplate)
-      socialHtml = socialTemplateScript(socialInfo)
+      socialHtml = socialTemplateScript(data["info"])
       $("#social").append(socialHtml)
 
       // Footer

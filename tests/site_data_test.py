@@ -5,6 +5,7 @@ Generate site data files tests.
 import shutil
 import json
 import os
+import pytest
 import peji
 
 
@@ -31,3 +32,8 @@ def test_generate_site_data_files():
 
     # Cleanup - deleted the generated content.
     shutil.rmtree('public/')
+
+    # Check system exit is raised when config validation fails.
+    # TODO: Make this test better with more cases.
+    with pytest.raises(SystemExit):
+        peji.generate_site_data_files('tests/bad_test_config.json')

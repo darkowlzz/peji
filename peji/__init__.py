@@ -5,9 +5,12 @@ peji command line interface
 import json
 import sys
 import os
+import importlib.resources as pkg_resources
 import click
+from jsonschema import validate
+from jsonschema.exceptions import ValidationError
 from peji import buttons
-from peji.page import page_generator
+from peji.page import page_generator, schemas
 
 
 def next_item(data):
@@ -95,7 +98,17 @@ def truncate_all_buttons(configfile):
 def generate_site_data_files(configfile):
     """Reads the master config file, creates a site config file and data files"""
     with open(configfile, 'r') as json_file:
-        data = json.load(json_file)
+        try:
+            data = json.load(json_file)
+        except json.decoder.JSONDecodeError as error:
+            sys.exit('failed to load json: %r' % error)
+
+        # Validate the data.
+        try:
+            validate_site_data(data)
+        except ValidationError as error:
+            sys.exit('data schema validation failed: %r' % error)
+
         # Ensure that public/data dir exists.
         site_data_dir = os.path.join('public', 'data')
         if not os.path.exists(site_data_dir):
@@ -121,6 +134,27 @@ def generate_site_data_files(configfile):
         click.echo('generating site config %r' % site_config_path)
         with open(site_config_path, 'w') as config_file:
             json.dump(data, config_file, indent=2)
+
+
+def validate_site_data(data):
+    """Validates site config data using an appropriate schema."""
+    try:
+        schema = pkg_resources.read_text(
+            schemas, schema_for_site_type(data['siteType']))
+    except KeyError as error:
+        sys.exit('%r not found in the config' % error.args)
+
+    schema_data = json.loads(schema)
+    validate(instance=data, schema=schema_data)
+    click.echo('data validation successful')
+
+
+def schema_for_site_type(site_type):
+    """Returns file name of schema for a given site type."""
+    return {
+        "HOME": "home-schema.json",
+        "SHOP": "shop-schema.json",
+    }[site_type]
 
 
 def generate_site_files(configfile):

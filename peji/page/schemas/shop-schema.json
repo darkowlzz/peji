@@ -1,0 +1,144 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://darkowlzz.space/peji/shop.schema.json",
+    "title": "Shop Site Config",
+    "description": "Peji site config for shop page",
+    "type": "object",
+    "properties": {
+        "siteType": {
+            "description": "Peji site type",
+            "type": "string"
+        },
+        "title": {
+            "description": "Title of the site",
+            "type": "string"
+        },
+        "title-lead": {
+            "description": "Head title/subtext",
+            "type": "string"
+        },
+        "title-sublead": {
+            "description": "Head subtitle/subtext",
+            "type": "string"
+        },
+        "title-logo": {
+            "description": "Site logo URL",
+            "type": "string"
+        },
+        "primary-background": {
+            "description": "Primary color of the site",
+            "type": "string"
+        },
+        "secondary-background": {
+            "description": "Secondary color of the site",
+            "type": "string"
+        },
+        "info": {
+            "description": "Informational content",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "description": "Name of the info item",
+                        "type": "string"
+                    },
+                    "items": {
+                        "description": "Info items",
+                        "type": "array",
+                        "properties": {
+                            "name": {
+                                "description": "Info item name",
+                                "type": "string"
+                            },
+                            "link": {
+                                "description": "Info item link",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "link"
+                        ],
+                        "uniqueItems": true
+                    }
+                },
+                "required": [
+                    "title"
+                ]
+            }
+        },
+        "catalog": {
+            "description": "Catalog of items in different categories",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "ID of a category",
+                        "type": "string"
+                    },
+                    "category": {
+                        "description": "Name of the category in catalog",
+                        "type": "string"
+                    },
+                    "items": {
+                        "description": "Items in the category",
+                        "type": "array",
+                        "properties": {
+                            "id": {
+                                "description": "ID of an item",
+                                "type": "string"
+                            },
+                            "image": {
+                                "description": "Item image link",
+                                "type": "string"
+                            },
+                            "title": {
+                                "description": "Item title",
+                                "type": "string"
+                            },
+                            "description": {
+                                "description": "Item description",
+                                "type": "string"
+                            },
+                            "publishDate": {
+                                "description": "Publish date of the item",
+                                "type": "string"
+                            },
+                            "available": {
+                                "description": "Availability of the item",
+                                "type": "boolean"
+                            },
+                            "price": {
+                                "description": "Price of the item",
+                                "type": "number"
+                            },
+                            "button": {
+                                "description": "Code snippet of the buy button",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "image",
+                            "title",
+                            "available",
+                            "price"
+                        ],
+                        "uniqueItems": true
+                    }
+                },
+                "required": [
+                    "id",
+                    "category"
+                ],
+                "uniqueItems": true
+            }
+        }
+    },
+    "required": [
+        "siteType",
+        "title"
+    ]
+}
