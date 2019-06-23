@@ -37,7 +37,15 @@ class HomeGenerator(PageGenerator):
         <div class="starter-template">
             <h1>{{title}}</h1>
             <img id="title-logo" class="head-logo" src="{{title-logo}}">
+            <br><br>
             <p class="lead">{{title-lead}}</p>
+            <!-- Embed periscope on-air widget only if on-air-id is set -->
+            {{#if on-air-id}}
+            <br><br>
+            <scr{{!}}ipt>window.twttr = function (t, e, r) { var n, i = t.getElementsByTagName(e)[0], w = window.twttr || {}; return t.getElementById(r) ? w : (n = t.createElement(e), n.id = r, n.src = "https://platform.twitter.com/widgets.js", i.parentNode.insertBefore(n, i), w._e = [], w.ready = function (t) { w._e.push(t) }, w) }(document, "script", "twitter-wjs")</scr{{!}}ipt>
+            <a href="https://www.periscope.tv/{{on-air-id}}" class="periscope-on-air" data-size="large">@{{on-air-id}}</a>
+            <br>
+            {{/if}}
         </div>
     </script>
 
@@ -142,7 +150,6 @@ $(document).ready(function () {
       // Get social info.
       let socialInfo
       for (let info of data["info"]) {
-        console.log("INFO:", info["title"])
         if (info["title"] == "Social") {
           socialInfo = info
           break
