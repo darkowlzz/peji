@@ -1,0 +1,66 @@
+{
+    "siteType": "CALENDAR",
+    "title": "Darkholes Calendar",
+    "title-lead": "Lorem ipsum dolor sit amet, consectetur adipiscing elit!",
+    "title-logo": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/face.png",
+    "primary-background": "white",
+    "secondary-background": "#000",
+    "calendar": {
+        "code": "",
+        "id": "something@gmail.com",
+        "timezone": "America/Atikokan"
+    },
+    "info": [
+        {
+            "title": "Other Pages",
+            "items": [
+                {
+                    "name": "Gaming",
+                    "link": ""
+                },
+                {
+                    "name": "Music",
+                    "link": ""
+                },
+                {
+                    "name": "Books",
+                    "link": ""
+                },
+                {
+                    "name": "Thoughts",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "title": "Resources",
+            "items": [
+                {
+                    "name": "Twitter",
+                    "link": ""
+                },
+                {
+                    "name": "Discord",
+                    "link": ""
+                },
+                {
+                    "name": "Twitch",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "title": "About",
+            "items": [
+                {
+                    "name": "Privacy",
+                    "link": ""
+                },
+                {
+                    "name": "Terms",
+                    "link": ""
+                }
+            ]
+        }
+    ]
+}
