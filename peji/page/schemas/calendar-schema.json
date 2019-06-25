@@ -1,0 +1,87 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://darkowlzz.space/peji/calendar.schema.json",
+    "title": "Calendar Site Config",
+    "description": "Peji site config for calendar page",
+    "type": "object",
+    "properties": {
+        "siteType": {
+            "description": "Peji site type",
+            "type": "string"
+        },
+        "title": {
+            "description": "Title of the site",
+            "type": "string"
+        },
+        "title-lead": {
+            "description": "Head title/subtext",
+            "type": "string"
+        },
+        "title-logo": {
+            "description": "Site logo URL",
+            "type": "string"
+        },
+        "primary-background": {
+            "description": "Primary color of the site",
+            "type": "string"
+        },
+        "calendar": {
+            "description": "Calendar configurations",
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "Code snippet of a calendar with escaped special symbols",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Calendar user ID. Google address for google calendar.",
+                    "type": "string"
+                },
+                "timezone": {
+                    "description": "Timezone of the calendar. Used in google calendar.",
+                    "type": "string"
+                }
+            }
+        },
+        "info": {
+            "description": "Informational content",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "description": "Name of the info item",
+                        "type": "string"
+                    },
+                    "items": {
+                        "description": "Info items",
+                        "type": "array",
+                        "properties": {
+                            "name": {
+                                "description": "Info item name",
+                                "type": "string"
+                            },
+                            "link": {
+                                "description": "Info item link",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "link"
+                        ],
+                        "uniqueItems": true
+                    }
+                },
+                "required": [
+                    "title"
+                ]
+            }
+        }
+    },
+    "required": [
+        "siteType",
+        "title",
+        "calendar"
+    ]
+}

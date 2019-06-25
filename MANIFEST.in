@@ -1,2 +1,3 @@
 include peji/page/schemas/home-schema.json
 include peji/page/schemas/shop-schema.json
+include peji/page/schemas/calendar-schema.json

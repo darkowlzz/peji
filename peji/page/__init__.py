@@ -10,6 +10,7 @@ class SiteType(Enum):
     """SiteType defines different types of sites."""
     HOME = 1
     SHOP = 2
+    CALENDAR = 3
 
 
 # Site type attribute name in peji config.

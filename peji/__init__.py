@@ -154,6 +154,7 @@ def schema_for_site_type(site_type):
     return {
         "HOME": "home-schema.json",
         "SHOP": "shop-schema.json",
+        "CALENDAR": "calendar-schema.json",
     }[site_type]
 
 
