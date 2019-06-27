@@ -6,7 +6,7 @@
     "primary-background": "white",
     "secondary-background": "#000",
     "on-air-id": "darkholes",
-    "info": [
+    "social": [
         {
             "name": "Shop",
             "link": "https://holes.darkowlzz.space",
@@ -31,6 +31,59 @@
             "name": "Periscope",
             "link": "",
             "image": ""
+        }
+    ],
+    "info": [
+        {
+            "title": "Other Pages",
+            "items": [
+                {
+                    "name": "Gaming",
+                    "link": ""
+                },
+                {
+                    "name": "Music",
+                    "link": ""
+                },
+                {
+                    "name": "Books",
+                    "link": ""
+                },
+                {
+                    "name": "Thoughts",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "title": "Resources",
+            "items": [
+                {
+                    "name": "Twitter",
+                    "link": ""
+                },
+                {
+                    "name": "Discord",
+                    "link": ""
+                },
+                {
+                    "name": "Twitch",
+                    "link": ""
+                }
+            ]
+        },
+        {
+            "title": "About",
+            "items": [
+                {
+                    "name": "Privacy",
+                    "link": ""
+                },
+                {
+                    "name": "Terms",
+                    "link": ""
+                }
+            ]
         }
     ]
 }

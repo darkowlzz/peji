@@ -77,10 +77,20 @@ class HomeGenerator(PageGenerator):
                     <img class="mb-2" src="{{title-logo}}" alt="" width="24" height="24">
                     <small class="d-block mb-3 text-muted">&copy; 2019</small>
                 </div>
+                {{#each info}}
+                <div class="col-6 col-md">
+                    <h5>{{title}}</h5>
+                    <ul class="list-unstyled text-small">
+                    {{#each items}}
+                    <li><a class="text-muted" href="{{link}}" target="_blank">{{name}}</a></li>
+                    {{/each}}
+                    </ul>
+                </div>
+                {{/each}}
+                </div>
             </div>
         </footer>
     </script>
-
 
     <!-- Load bootstrap components -->
     <script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -155,7 +165,7 @@ $(document).ready(function () {
       // Info
       var socialTemplate = $("#social-hb").html()
       var socialTemplateScript = Handlebars.compile(socialTemplate)
-      socialHtml = socialTemplateScript(data["info"])
+      socialHtml = socialTemplateScript(data["social"])
       $("#social").append(socialHtml)
 
       // Footer

@@ -29,8 +29,8 @@
             "description": "Periscope user ID for on-air widget",
             "type": "string"
         },
-        "info": {
-            "description": "Informational content",
+        "social": {
+            "description": "Social informational content",
             "type": "array",
             "items": {
                 "type": "object",
@@ -53,6 +53,41 @@
                     "link"
                 ],
                 "uniqueItems": true
+            }
+        },
+        "info": {
+            "description": "Informational content",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "description": "Name of the info item",
+                        "type": "string"
+                    },
+                    "items": {
+                        "description": "Info items",
+                        "type": "array",
+                        "properties": {
+                            "name": {
+                                "description": "Info item name",
+                                "type": "string"
+                            },
+                            "link": {
+                                "description": "Info item link",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "link"
+                        ],
+                        "uniqueItems": true
+                    }
+                },
+                "required": [
+                    "title"
+                ]
             }
         }
     },
