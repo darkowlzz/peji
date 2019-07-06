@@ -33,6 +33,18 @@
             "description": "Secondary color of the site",
             "type": "string"
         },
+        "showPrice": {
+            "description": "Show price of the items",
+            "type": "boolean"
+        },
+        "currencySymbol": {
+            "description": "Symbol of currency",
+            "type": "string"
+        },
+        "currencyName": {
+            "description": "Name of currency",
+            "type": "string"
+        },
         "info": {
             "description": "Informational content",
             "type": "array",

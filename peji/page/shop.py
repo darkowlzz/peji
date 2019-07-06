@@ -67,6 +67,15 @@ class ShopGenerator(PageGenerator):
         <div class="card-body">
             <h5 class="card-title text-light text-center">{{title}}</h5>
             <p class="card-text text-light text-center">{{description}}</p>
+            {{#if ../showPrice}}
+            <p class="card-text text-light text-center">
+                {{../currencySymbol}}
+                {{price}}
+                {{#if ../currencyName}}
+                ({{../currencyName}})
+                {{/if}}
+            </p>
+            {{/if}}
             <div class="text-center">
             {{#if available}}
             {{button}}
@@ -297,6 +306,12 @@ function buildCatalog(data) {
     fetch(catDataURL)
       .then(function (response) { return response.json(); })
       .then(function (categoryData) {
+        // Add showPrice from root config to each of the category data so that
+        // it can be used in the card template.
+        categoryData['showPrice'] = data['showPrice']
+        categoryData['currencySymbol'] = data['currencySymbol']
+        categoryData['currencyName'] = data['currencyName']
+
         var categoryTemplate = $("#list-category-hb").html()
         var categoryTemplateScript = Handlebars.compile(categoryTemplate, { noEscape: true })
         categoryHtml = categoryTemplateScript(categoryData)
