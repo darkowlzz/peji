@@ -131,7 +131,8 @@ $(document).ready(function () {
       $("#head-div").append(headHtml)
 
       $("body").css("background", data["primary-background"])
-      $("body").css("color", data["secondary-background"])
+      // Set global text color.
+      $("body").css("color", data["textColor"])
 
       // Calendar
       var calTemplate = $("#calendar-hb").html()

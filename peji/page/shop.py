@@ -45,11 +45,11 @@ class ShopGenerator(PageGenerator):
 <script id="jumbo-hb" type="text/x-handlebars-template">
     <div id="jumbo" class="jumbotron jumbotron-fluid text-center">
         <div class="container">
-        <h1 id="title" class="display-4 text-light">{{title}}</h1>
+        <h1 id="title" class="display-4">{{title}}</h1>
         <img id="title-logo" class="jumbo-logo" src="{{title-logo}}">
-        <p id="title-lead" class="lead text-light">{{title-lead}}</p>
+        <p id="title-lead" class="lead">{{title-lead}}</p>
         <hr class="my-4">
-        <p id="title-sublead" class="text-light">{{title-sublead}}</p>
+        <p id="title-sublead">{{title-sublead}}</p>
         </div>
     </div>
     </script>
@@ -65,10 +65,10 @@ class ShopGenerator(PageGenerator):
         <div class="card bg-dark mb-2 mt-2 ml-2 mr-2">
         <img src="{{image}}" class="card-img-top cover" id="{{id}}">
         <div class="card-body">
-            <h5 class="card-title text-light text-center">{{title}}</h5>
-            <p class="card-text text-light text-center">{{description}}</p>
+            <h5 class="card-title text-center">{{title}}</h5>
+            <p class="card-text text-center">{{description}}</p>
             {{#if ../showPrice}}
-            <p class="card-text text-light text-center">
+            <p class="card-text text-center">
                 {{../currencySymbol}}
                 {{price}}
                 {{#if ../currencyName}}
@@ -270,6 +270,8 @@ $(document).ready(function () {
 
       $("#jumbo").css("background", data["primary-background"])
       $("body").css("background", data["secondary-background"])
+      // Set global text color.
+      $("body").css("color", data["textColor"])
 
       // Footer
       var footerTemplate = $("#footer-hb").html()

@@ -5,6 +5,7 @@
     "title-logo": "https://raw.githubusercontent.com/purdynerdy/artpics/master/logo/logo.png",
     "primary-background": "white",
     "secondary-background": "#000",
+    "textColor": "white",
     "on-air-id": "darkholes",
     "social": [
         {

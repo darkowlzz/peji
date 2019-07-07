@@ -6,6 +6,7 @@
     "title-logo": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/face.png",
     "primary-background": "black",
     "secondary-background": "#f2f5f7",
+    "textColor": "white",
     "showPrice": true,
     "currencySymbol": "$",
     "currencyName": "USD",

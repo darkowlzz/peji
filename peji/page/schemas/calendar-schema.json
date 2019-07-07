@@ -25,6 +25,10 @@
             "description": "Primary color of the site",
             "type": "string"
         },
+        "textColor": {
+            "description": "Color of the text on the website",
+            "type": "string"
+        },
         "calendar": {
             "description": "Calendar configurations",
             "type": "object",

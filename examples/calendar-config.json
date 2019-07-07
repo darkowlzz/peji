@@ -5,10 +5,11 @@
     "title-logo": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/face.png",
     "primary-background": "white",
     "secondary-background": "#000",
+    "textColor": "white",
     "calendar": {
         "code": "",
         "id": "something@gmail.com",
-        "timezone": "America/Atikokan"
+        "timezone": "America/New_York"
     },
     "info": [
         {
