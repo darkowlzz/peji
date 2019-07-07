@@ -7,6 +7,8 @@
     "primary-background": "black",
     "secondary-background": "#f2f5f7",
     "textColor": "white",
+    "cardColor": "black",
+    "footerTextHeadColor": "black",
     "showPrice": true,
     "currencySymbol": "$",
     "currencyName": "USD",

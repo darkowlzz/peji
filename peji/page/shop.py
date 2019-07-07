@@ -62,7 +62,7 @@ class ShopGenerator(PageGenerator):
     <div class="row no-gutters justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center">
     {{#each items}}
     <div class="col-sm-8 col-md-6 col-lg-4">
-        <div class="card bg-dark mb-2 mt-2 ml-2 mr-2">
+        <div class="card mb-2 mt-2 ml-2 mr-2">
         <img src="{{image}}" class="card-img-top cover" id="{{id}}">
         <div class="card-body">
             <h5 class="card-title text-center">{{title}}</h5>
@@ -103,7 +103,7 @@ class ShopGenerator(PageGenerator):
         </div>
         {{#each info}}
         <div class="col-6 col-md">
-            <h5>{{title}}</h5>
+            <h5 style="color:{{../footerTextHeadColor}}">{{title}}</h5>
             <ul class="list-unstyled text-small">
             {{#each items}}
             <li><a class="text-muted" href="{{link}}" target="_blank">{{name}}</a></li>
@@ -329,6 +329,11 @@ function buildCatalog(data) {
             captionText.innerHTML = this.alt
           })
         })
+
+        // Set card color after rendering.
+        // NOTE: This will run multiple times. Can be improved to just at the
+        // end of all the rendering.
+        $(".card").css("background-color", data["cardColor"])
       });
   }
 }

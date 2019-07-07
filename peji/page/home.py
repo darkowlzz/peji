@@ -79,7 +79,7 @@ class HomeGenerator(PageGenerator):
                 </div>
                 {{#each info}}
                 <div class="col-6 col-md">
-                    <h5>{{title}}</h5>
+                    <h5 style="color:{{../footerTextHeadColor}}">{{title}}</h5>
                     <ul class="list-unstyled text-small">
                     {{#each items}}
                     <li><a class="text-muted" href="{{link}}" target="_blank">{{name}}</a></li>

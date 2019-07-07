@@ -6,6 +6,7 @@
     "primary-background": "white",
     "secondary-background": "#000",
     "textColor": "white",
+    "footerTextHeadColor": "black",
     "on-air-id": "darkholes",
     "social": [
         {

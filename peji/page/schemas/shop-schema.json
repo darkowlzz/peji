@@ -37,6 +37,14 @@
             "description": "Color of the text on the website",
             "type": "string"
         },
+        "cardColor": {
+            "description": "Color of the catalog item card",
+            "type": "string"
+        },
+        "footerTextHeadColor": {
+            "description": "Color of the text header in the footer",
+            "type": "string"
+        },
         "showPrice": {
             "description": "Show price of the items",
             "type": "boolean"

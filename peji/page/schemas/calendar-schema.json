@@ -29,6 +29,10 @@
             "description": "Color of the text on the website",
             "type": "string"
         },
+        "footerTextHeadColor": {
+            "description": "Color of the text header in the footer",
+            "type": "string"
+        },
         "calendar": {
             "description": "Calendar configurations",
             "type": "object",
