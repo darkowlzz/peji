@@ -8,13 +8,16 @@ import os
 import pytest
 import peji
 
+GOOD_CONFIG_FILE = 'tests/testdata/test_config.json'
+BAD_CONFIG_FILE = 'tests/testdata/bad_test_config.json'
+
 
 def test_generate_site_data_files():
     """Test generates site data files and reads the content to verify the
     integrity of the files.
     """
-    peji.generate_site_data_files('tests/test_config.json')
-    with open('tests/test_config.json', 'r') as master_config_file:
+    peji.generate_site_data_files(GOOD_CONFIG_FILE)
+    with open(GOOD_CONFIG_FILE, 'r') as master_config_file:
         # Read master config data and compare the generated files with the
         # master config.
         master_data = json.load(master_config_file)
@@ -36,4 +39,4 @@ def test_generate_site_data_files():
     # Check system exit is raised when config validation fails.
     # TODO: Make this test better with more cases.
     with pytest.raises(SystemExit):
-        peji.generate_site_data_files('tests/bad_test_config.json')
+        peji.generate_site_data_files(BAD_CONFIG_FILE)

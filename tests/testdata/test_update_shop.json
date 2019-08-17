@@ -1,0 +1,104 @@
+{
+    "siteType": "SHOP",
+    "title": "DarkHoles",
+    "title-lead": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "title-sublead": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam",
+    "title-logo": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/face.png",
+    "primary-background": "black",
+    "secondary-background": "#f2f5f7",
+    "info": [],
+    "catalog": [
+        {
+            "id": "1",
+            "category": "doloremque",
+            "items": [
+                {
+                    "id": "1",
+                    "image": "https://raw.githubusercontent.com/purdynerdy/artpics/master/pics/1.jpeg",
+                    "title": "Look Deeper",
+                    "description": "Watercolor - 15x20 inches",
+                    "publishDate": "29th May, 2019",
+                    "available": true,
+                    "price": 300,
+                    "button": "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input name=\"cmd\" type=\"hidden\" value=\"_s-xclick\"/><input name=\"hosted_button_id\" type=\"hidden\" value=\"PRPH7D5TPASA4\"/><input alt=\"PayPal - The safer, easier way to pay online!\" border=\"0\" name=\"submit\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif\" type=\"image\"/><img alt=\"\" border=\"0\" height=\"1\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\"/></form>"
+                },
+                {
+                    "id": "2",
+                    "image": "https://raw.githubusercontent.com/purdynerdy/artpics/master/pics/2.jpeg",
+                    "title": "Confrontation of Vulnerability",
+                    "description": "Acrylic - 11x14 inches",
+                    "publishDate": "29th May, 2019",
+                    "available": true,
+                    "price": 150,
+                    "button": "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input name=\"cmd\" type=\"hidden\" value=\"_s-xclick\"/><input name=\"hosted_button_id\" type=\"hidden\" value=\"JLZFDXALR5VVW\"/><input alt=\"PayPal - The safer, easier way to pay online!\" border=\"0\" name=\"submit\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif\" type=\"image\"/><img alt=\"\" border=\"0\" height=\"1\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\"/></form>"
+                },
+                {
+                    "id": "3",
+                    "image": "https://raw.githubusercontent.com/purdynerdy/artpics/master/pics/3.jpeg",
+                    "title": "Unamused",
+                    "description": "Acrylic - 5x7 inches",
+                    "publishDate": "29th May, 2019",
+                    "available": true,
+                    "price": 50,
+                    "button": "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input name=\"cmd\" type=\"hidden\" value=\"_s-xclick\"/><input name=\"hosted_button_id\" type=\"hidden\" value=\"SSEYT4F9WYTV6\"/><input alt=\"PayPal - The safer, easier way to pay online!\" border=\"0\" name=\"submit\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif\" type=\"image\"/><img alt=\"\" border=\"0\" height=\"1\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\"/></form>"
+                },
+                {
+                    "id": "4",
+                    "image": "https://raw.githubusercontent.com/purdynerdy/artpics/master/pics/4.jpeg",
+                    "title": "Jellyfish",
+                    "description": "Acrylic - 5x7 inches",
+                    "publishDate": "29th May, 2019",
+                    "available": true,
+                    "price": 50,
+                    "button": "<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input name=\"cmd\" type=\"hidden\" value=\"_s-xclick\"/><input name=\"hosted_button_id\" type=\"hidden\" value=\"BN6EX67ALHQ3S\"/><input alt=\"PayPal - The safer, easier way to pay online!\" border=\"0\" name=\"submit\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif\" type=\"image\"/><img alt=\"\" border=\"0\" height=\"1\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\"/></form>"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "category": "aliqua",
+            "items": [
+                {
+                    "id": "106",
+                    "image": "https://media.discordapp.net/attachments/447673575617462293/575387386335199232/Untitled_Artwork.jpg",
+                    "title": "voluptatem",
+                    "description": "Some description",
+                    "publishDate": "1st Jan, 2019",
+                    "available": true,
+                    "price": 9,
+                    "button": ""
+                },
+                {
+                    "id": "107",
+                    "image": "https://media.tenor.com/images/b31aee1d14ea0e78467f0d4a8c9360a0/tenor.gif",
+                    "title": "natus error",
+                    "description": "Some description",
+                    "publishDate": "1st Jan, 2019",
+                    "available": true,
+                    "price": 10,
+                    "button": ""
+                },
+                {
+                    "id": "108",
+                    "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/laugh.gif",
+                    "title": "Sed ut",
+                    "description": "Some description",
+                    "publishDate": "1st Jan, 2019",
+                    "available": true,
+                    "price": 20,
+                    "button": ""
+                },
+                {
+                    "id": "109",
+                    "image": "https://raw.githubusercontent.com/darkowlzz/netlify-test/data/static/face.png",
+                    "title": "laudantium",
+                    "description": "Some description",
+                    "publishDate": "1st Jan, 2019",
+                    "available": true,
+                    "price": 5,
+                    "button": ""
+                }
+            ]
+        }
+    ]
+}

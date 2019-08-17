@@ -10,6 +10,7 @@ import click
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 from peji import buttons
+from peji import csv_to_catalog
 from peji.page import page_generator, schemas
 
 
@@ -92,6 +93,13 @@ def truncate_all_buttons(configfile):
                 click.echo('truncating button for %r' % item['title'])
                 item['button'] = ''
 
+        write_to_file(data, json_file)
+
+
+def update_catalog_data(configfile, csvfile, catalog_id):
+    with open(configfile, 'r+') as json_file:
+        data = json.load(json_file)
+        data = csv_to_catalog.update_data(data, csvfile, catalog_id)
         write_to_file(data, json_file)
 
 
@@ -184,8 +192,18 @@ def truncate_buttons(configfile):
     truncate_all_buttons(configfile)
 
 
+@click.command()
+@click.argument('configfile')
+@click.argument('csvfile')
+@click.argument('catalog_id')
+def update_data(configfile, csvfile, catalog_id):
+    """Updates data under a catalog from a CSV file."""
+    update_catalog_data(configfile, csvfile, catalog_id)
+
+
 # Add commands to config subcommand group.
 config.add_command(truncate_buttons)
+config.add_command(update_data)
 
 
 ############ Page Subcommand ############
