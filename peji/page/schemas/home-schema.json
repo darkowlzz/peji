@@ -37,30 +37,76 @@
             "description": "Periscope user ID for on-air widget",
             "type": "string"
         },
+        "personal": {
+            "description": "Personal page list",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "Title of personal page section",
+                    "type": "string"
+                },
+                "items": {
+                    "description": "Personal page item",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name of the info",
+                                "type": "string"
+                            },
+                            "link": {
+                                "description": "Website link",
+                                "type": "string"
+                            },
+                            "image": {
+                                "description": "Image link",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "link"
+                        ],
+                        "uniqueItems": true
+                    }
+                }
+            }
+        },
         "social": {
             "description": "Social informational content",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "description": "Name of the info",
-                        "type": "string"
-                    },
-                    "link": {
-                        "description": "External website link",
-                        "type": "string"
-                    },
-                    "image": {
-                        "description": "Image link",
-                        "type": "string"
-                    }
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "Title of social page section",
+                    "type": "string"
                 },
-                "required": [
-                    "name",
-                    "link"
-                ],
-                "uniqueItems": true
+                "items": {
+                    "description": "Social page items",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name of the info",
+                                "type": "string"
+                            },
+                            "link": {
+                                "description": "External website link",
+                                "type": "string"
+                            },
+                            "image": {
+                                "description": "Image link",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "link"
+                        ],
+                        "uniqueItems": true
+                    }
+                }
             }
         },
         "info": {

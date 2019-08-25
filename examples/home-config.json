@@ -8,33 +8,46 @@
     "textColor": "white",
     "footerTextHeadColor": "black",
     "on-air-id": "darkholes",
-    "social": [
-        {
-            "name": "Shop",
-            "link": "https://holes.darkowlzz.space",
-            "image": ""
-        },
-        {
-            "name": "Instagram",
-            "link": "",
-            "image": ""
-        },
-        {
-            "name": "Twitter",
-            "link": "",
-            "image": ""
-        },
-        {
-            "name": "Twitch",
-            "link": "",
-            "image": ""
-        },
-        {
-            "name": "Periscope",
-            "link": "",
-            "image": ""
-        }
-    ],
+    "personal": {
+        "title": "Personal Sites",
+        "items": [
+            {
+                "name": "Shop",
+                "link": "",
+                "image": ""
+            },
+            {
+                "name": "Calendar",
+                "link": "",
+                "image": ""
+            }
+        ]
+    },
+    "social": {
+        "title": "Social Media",
+        "items": [
+            {
+                "name": "Instagram",
+                "link": "",
+                "image": ""
+            },
+            {
+                "name": "Twitter",
+                "link": "",
+                "image": ""
+            },
+            {
+                "name": "Twitch",
+                "link": "",
+                "image": ""
+            },
+            {
+                "name": "Periscope",
+                "link": "",
+                "image": ""
+            }
+        ]
+    },
     "info": [
         {
             "title": "Other Pages",

@@ -25,6 +25,9 @@ class HomeGenerator(PageGenerator):
     <div id="head-div">
     </div>
 
+    <div id="personal" class="container" >
+    </div>
+
     <div id="social" class="container">
     </div>
 
@@ -49,11 +52,40 @@ class HomeGenerator(PageGenerator):
         </div>
     </script>
 
+    <!-- Template for personal links -->
+    <script id="personal-hb" type="text/x-handlebars-template">
+        <div class="container social">
+            {{#if items.length}}
+            <h4>{{title}}</h4>
+            <div class="row justify-content-center">
+                {{#each items}}
+                <div class="col-sm-6 col-md col-lg-4">
+                    <a href="{{link}}" style="color:inherit;">
+                        <!-- Insert image is provided, else use the item name -->
+                        {{#if image}}
+                        <img src="{{image}}" class="social-logo" width="140" height="140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <p>{{name}}</p>
+                        {{else}}
+                        <p>{{name}}</p>
+                        {{/if}}
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+            <hr/>
+            <br>
+            {{/if}}
+        </div>
+    </script>
+
+
     <!-- Template for social links -->
     <script id="social-hb" type="text/x-handlebars-template">
         <div class="container social">
+            {{#if items.length}}
+            <h4>{{title}}</h4>
             <div class="row justify-content-center">
-                {{#each this}}
+                {{#each items}}
                 <div class="col-sm-6 col-md col-lg-4">
                     <a href="{{link}}" target="_blank">
                         <!-- Insert image is provided, else use the item name -->
@@ -66,6 +98,9 @@ class HomeGenerator(PageGenerator):
                 </div>
                 {{/each}}
             </div>
+            <hr/>
+            <br>
+            {{/if}}
         </div>
     </script>
 
@@ -121,6 +156,10 @@ class HomeGenerator(PageGenerator):
   text-align: center;
 }
 
+.social {
+  text-align: center;
+}
+
 .social .col-lg-4 {
   margin-bottom: 1.5rem;
   text-align: center;
@@ -163,11 +202,23 @@ $(document).ready(function () {
       // Set global text color.
       $("body").css("color", data["textColor"])
 
-      // Info
-      var socialTemplate = $("#social-hb").html()
-      var socialTemplateScript = Handlebars.compile(socialTemplate)
-      socialHtml = socialTemplateScript(data["social"])
-      $("#social").append(socialHtml)
+      // Personal
+      var personals = data["personal"] || []
+      if (personals.items.length > 0) {
+        var personalTemplate = $("#personal-hb").html()
+        var personalTemplateScript = Handlebars.compile(personalTemplate)
+        personalHTML = personalTemplateScript(personals)
+        $("#personal").append(personalHTML)
+      }
+
+      // Socials
+      var socials = data["social"] || []
+      if (socials.items.length > 0) {
+        var socialTemplate = $("#social-hb").html()
+        var socialTemplateScript = Handlebars.compile(socialTemplate)
+        socialHtml = socialTemplateScript(socials)
+        $("#social").append(socialHtml)
+      }
 
       // Footer
       var footerTemplate = $("#footer-hb").html()
