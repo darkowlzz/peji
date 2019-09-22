@@ -131,8 +131,10 @@ def update_new_release(repo_name, csvfile):
             sys.exit('failed to generate data file: %r' % sys.exc_info())
 
 
-def generate_site_data_files(configfile):
-    """Reads the master config file, creates a site config file and data files"""
+def generate_site_data_files(configfile, datafile):
+    """Reads the site config file and data file, and creates a site config file
+    and data files.
+    """
     with open(configfile, 'r') as json_file:
         try:
             data = json.load(json_file)
@@ -149,27 +151,63 @@ def generate_site_data_files(configfile):
         site_data_dir = os.path.join('public', 'data')
         if not os.path.exists(site_data_dir):
             os.makedirs(site_data_dir)
-        # Create data files for each catalog entry.
-        try:
-            for cat in data['catalog']:
-                cat_file_path = os.path.join(site_data_dir, cat['id']+'.json')
-                click.echo('generating catalog data file %r' % cat_file_path)
-                with open(cat_file_path, 'w') as cat_file:
-                    json.dump(cat, cat_file, indent=2)
-                # Delete category item list from config.
-                del cat['items']
-                # Add relative links to the data files in the config file. This path
-                # should be relative to the public dir.
-                cat['dataURL'] = os.path.relpath(cat_file_path, 'public')
-        except KeyError as error:
-            click.echo('no %r found, generating rest of the files...' %
-                       error.args)
+
+        # Create data files for the site type.
+        if page_generator.SiteType[data[page_generator.SITE_TYPE]] == page_generator.SiteType.SHOP:
+            print('generating data for shop')
+            generate_shop_site_data_files(data, datafile, site_data_dir)
 
         # Write site config.
         site_config_path = os.path.join('public', 'config.json')
         click.echo('generating site config %r' % site_config_path)
         with open(site_config_path, 'w') as config_file:
             json.dump(data, config_file, indent=2)
+
+
+def generate_shop_site_data_files(site_config, datafile, site_data_dir):
+    """Creates data files for each catalog entry in data file and adds a data
+    URL for the data files in the site config.
+    """
+    with open(datafile, 'r') as data_file:
+        try:
+            data = json.load(data_file)
+        except json.decoder.JSONDecodeError as error:
+            sys.exit('failed to load json: %r' % error)
+
+        # Create data files for each catalog entry.
+        for cat in data:
+            # Check if site config knows about this category. If found, update
+            # the entry with dataURL later. Else, create a new category entry.
+            cat_found = False
+            cat_in_site_config = {}
+            for scat in site_config['catalog']:
+                if scat['id'] == cat['id']:
+                    cat_found = True
+                    cat_in_site_config = scat
+                    break
+
+            if not cat_found:
+                cat_in_site_config['id'] = cat['id']
+                cat_in_site_config['category'] = cat['category']
+
+            # Create the data file.
+            cat_file_path = os.path.join(site_data_dir, cat['id']+'.json')
+            click.echo('generating catalog data file %r' % cat_file_path)
+            with open(cat_file_path, 'w') as cat_file:
+                json.dump(cat, cat_file, indent=2)
+
+            # Delete category item list from config if present.
+            if 'items' in cat_in_site_config:
+                del cat_in_site_config['items']
+
+            # Add dataURL for the category.
+            cat_in_site_config['dataURL'] = os.path.relpath(
+                cat_file_path, 'public')
+
+            # Append the new category into site config if it's an unknown
+            # category.
+            if not cat_found:
+                site_config['catalog'].append(cat_in_site_config)
 
 
 def validate_site_data(data):
@@ -253,9 +291,10 @@ def page():
 
 @click.command()
 @click.argument('configfile')
-def generate_site_data(configfile):
+@click.argument('datafile')
+def generate_site_data(configfile, datafile):
     """Generate all the site data files, including the site config data."""
-    generate_site_data_files(configfile)
+    generate_site_data_files(configfile, datafile)
 
 
 @click.command()
