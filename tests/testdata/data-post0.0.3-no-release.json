@@ -1,0 +1,184 @@
+[
+    {
+        "id": "1",
+        "category": "",
+        "items": [
+            {
+                "id": "1",
+                "image": "https://test/static/1.JPG",
+                "title": "Look Deeper 0_0",
+                "description": "Watercolor - 15x20 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 300,
+                "button": ""
+            },
+            {
+                "id": "2",
+                "image": "https://test/static/2.JPG",
+                "title": "Confrontation of Vulnerability",
+                "description": "Acrylic - 11x14 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 150,
+                "button": ""
+            },
+            {
+                "id": "3",
+                "image": "https://test/static/3.JPG",
+                "title": "Unamused",
+                "description": "Acrylic - 5x7 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 50,
+                "button": ""
+            },
+            {
+                "id": "4",
+                "image": "https://test/static/4.JPG",
+                "title": "Jellyfish",
+                "description": "Acrylic - 5x7 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 50,
+                "button": ""
+            },
+            {
+                "id": "5",
+                "image": "https://test/static/5.JPG",
+                "title": "Watching",
+                "description": "Acrylic - 5x7 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 50,
+                "button": ""
+            },
+            {
+                "id": "6",
+                "image": "https://test/static/6.JPG",
+                "title": "Strife with a kindred Spirit",
+                "description": "Acrylic - 9x12 inches",
+                "publishDate": "22 September, 2019",
+                "available": false,
+                "price": 100,
+                "button": ""
+            },
+            {
+                "id": "7",
+                "image": "https://test/static/7.JPG",
+                "title": "Crowded Lonliness",
+                "description": "Acrylic - 11x14 inches",
+                "publishDate": "22 September, 2019",
+                "available": false,
+                "price": 250,
+                "button": ""
+            },
+            {
+                "id": "8",
+                "image": "https://test/static/8.JPG",
+                "title": "Expansion into Twilight",
+                "description": "Acrylic - 16x20 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 350,
+                "button": ""
+            },
+            {
+                "id": "16",
+                "image": "https://test/static/16.JPG",
+                "title": "Infinite exquisite stasis",
+                "description": "Watercolor - 15x20 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 350,
+                "button": ""
+            },
+            {
+                "id": "17",
+                "image": "https://test/static/17.JPG",
+                "title": "A new entry",
+                "description": "Digital - 5x5 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 33,
+                "button": ""
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "category": "",
+        "items": [
+            {
+                "id": "9",
+                "image": "https://test/static/9.JPG",
+                "title": "Night in Shining Armor",
+                "description": "Watercolor - 15x20 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 300,
+                "button": ""
+            },
+            {
+                "id": "10",
+                "image": "https://test/static/10.JPG",
+                "title": "The Door",
+                "description": "Watercolor - 15x20 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 350,
+                "button": ""
+            },
+            {
+                "id": "11",
+                "image": "https://test/static/11.JPG",
+                "title": "The Beatles",
+                "description": "Watercolor - 18x24 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 500,
+                "button": ""
+            },
+            {
+                "id": "12",
+                "image": "https://test/static/12.JPG",
+                "title": "Alien Landscape",
+                "description": "Watercolor - 9x12 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 150,
+                "button": ""
+            },
+            {
+                "id": "13",
+                "image": "https://test/static/13.JPG",
+                "title": "Abstract eye postcard",
+                "description": "Watercolor - 4x6 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 10,
+                "button": ""
+            },
+            {
+                "id": "14",
+                "image": "https://test/static/14.JPG",
+                "title": "Nature is watching",
+                "description": "Watercolor - 15x20 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 400,
+                "button": ""
+            },
+            {
+                "id": "15",
+                "image": "https://test/static/15.JPG",
+                "title": "Into the Abyss",
+                "description": "Acrylic - 11x14 inches",
+                "publishDate": "22 September, 2019",
+                "available": true,
+                "price": 300,
+                "button": ""
+            }
+        ]
+    }
+]

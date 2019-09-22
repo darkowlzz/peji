@@ -5,7 +5,7 @@ Buttons Tests.
 from peji import buttons
 import peji
 
-TEST_CONFIG_FILE = 'tests/testdata/test_config.json'
+TEST_CONFIG_FILE = 'tests/testdata/test_config-post0.0.3.json'
 
 
 def test_make_delete_buttons():

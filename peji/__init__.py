@@ -29,21 +29,35 @@ def next_item(data):
         sys.exit('unexpected data type: %r' % error.args)
 
 
+def next_item_data(data):
+    """Takes a data dictionary and yields the items under each catalog. It is
+    generator function.
+    """
+    try:
+        for cat in data:
+            for item in cat['items']:
+                yield item
+    except KeyError as error:
+        sys.exit('%r not found in the config' % error.args)
+    except TypeError as error:
+        sys.exit('unexpected data type: %r' % error.args)
+
+
 def write_to_file(data, file_desc):
     """Takes a dict and writes json serialized data to the file descriptor."""
-    click.echo('updating config file...')
+    click.echo('updating data file...')
     file_desc.seek(0)
     file_desc.truncate(0)
-    json.dump(data, file_desc, indent=2)
+    json.dump(data, file_desc, indent=4)
 
 
-def make_paypal_buttons(configfile):
-    """Takes a config json file, parses it for catalog items and creates paypal
+def make_paypal_buttons(datafile):
+    """Takes a data json file, parses it for catalog items and creates paypal
     buttons for the items.
     """
-    with open(configfile, 'r+') as json_file:
+    with open(datafile, 'r+') as json_file:
         data = json.load(json_file)
-        for item in next_item(data):
+        for item in next_item_data(data):
             if not item['button'] and item['available']:
                 click.echo('creating button for %r' % item['title'])
                 form = buttons.create_button(
@@ -53,13 +67,13 @@ def make_paypal_buttons(configfile):
         write_to_file(data, json_file)
 
 
-def delete_paypal_buttons_from_config(configfile):
-    """Takes a config json file, parses it for catalog items and deletes the
+def delete_paypal_buttons_from_config(datafile):
+    """Takes a data json file, parses it for catalog items and deletes the
     associated paypal buttons for the items.
     """
-    with open(configfile, 'r+') as json_file:
+    with open(datafile, 'r+') as json_file:
         data = json.load(json_file)
-        for item in next_item(data):
+        for item in next_item_data(data):
             if item['button']:
                 click.echo('deleting button for %r' % item['title'])
                 button_id = buttons.get_button_id_from_form(item['button'])
@@ -84,11 +98,11 @@ def get_all_paypal_buttons(days):
         print(i)
 
 
-def truncate_all_buttons(configfile):
-    """Truncates buttons of all the items in the given config file."""
-    with open(configfile, 'r+') as json_file:
+def truncate_all_buttons(datafile):
+    """Truncates buttons of all the items in the given data file."""
+    with open(datafile, 'r+') as json_file:
         data = json.load(json_file)
-        for item in next_item(data):
+        for item in next_item_data(data):
             if item['button']:
                 click.echo('truncating button for %r' % item['title'])
                 item['button'] = ''
@@ -101,6 +115,20 @@ def update_catalog_data(configfile, csvfile, catalog_id):
         data = json.load(json_file)
         data = csv_to_catalog.update_data(data, csvfile, catalog_id)
         write_to_file(data, json_file)
+
+
+def update_new_release(repo_name, csvfile):
+    """Generates a new data file to be posted as a release asset using the CSV
+    file and any existing data from the previous releases if available.
+    """
+    data_filename = 'data.json'
+    with open(data_filename, 'w') as json_file:
+        try:
+            data = csv_to_catalog.update_release_data(repo_name, csvfile)
+            write_to_file(data, json_file)
+            click.echo('data written to file %r' % data_filename)
+        except:
+            sys.exit('failed to generate data file: %r' % sys.exc_info())
 
 
 def generate_site_data_files(configfile):
@@ -201,9 +229,19 @@ def update_data(configfile, csvfile, catalog_id):
     update_catalog_data(configfile, csvfile, catalog_id)
 
 
+@click.command()
+@click.argument('repo_name')
+@click.argument('csvfile')
+def update_release_data(repo_name, csvfile):
+    """Updates previous release data and posts new data to the latest release.
+    """
+    update_new_release(repo_name, csvfile)
+
+
 # Add commands to config subcommand group.
 config.add_command(truncate_buttons)
 config.add_command(update_data)
+config.add_command(update_release_data)
 
 
 ############ Page Subcommand ############
