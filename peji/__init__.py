@@ -77,7 +77,10 @@ def delete_paypal_buttons_from_config(datafile):
             if item['button']:
                 click.echo('deleting button for %r' % item['title'])
                 button_id = buttons.get_button_id_from_form(item['button'])
-                buttons.delete_button(button_id)
+                try:
+                    buttons.delete_button(button_id)
+                except:
+                    pass
                 item['button'] = ''
 
         write_to_file(data, json_file)
@@ -189,6 +192,10 @@ def generate_shop_site_data_files(site_config, datafile, site_data_dir):
             if not cat_found:
                 cat_in_site_config['id'] = cat['id']
                 cat_in_site_config['category'] = cat['category']
+
+            # Remove items that are unavailable.
+            cat['items'] = [i for i in cat['items']
+                            if (i['available'] == True)]
 
             # Create the data file.
             cat_file_path = os.path.join(site_data_dir, cat['id']+'.json')

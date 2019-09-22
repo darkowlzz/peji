@@ -80,7 +80,7 @@
                     "title": "magna aliqua",
                     "description": "Some description",
                     "publishDate": "1st Jan, 2019",
-                    "available": false,
+                    "available": true,
                     "price": 15,
                     "button": ""
                 },
