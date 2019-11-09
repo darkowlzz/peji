@@ -36,7 +36,7 @@ def get_data(csvfile):
         for row in reader:
             item = {
                 'id': row[4],
-                'image': f"{image_url_prefix}/{row[4]}.JPG",
+                'image': f"{image_url_prefix}/{row[4]}.jpeg",
                 'title': row[0],
                 'description': f"{row[3]} - {row[1]} inches",
                 'publishDate': today.strftime('%d %B, %Y'),
@@ -75,7 +75,7 @@ def get_data_from_csv(csvfile):
         for row in reader:
             item = {
                 'id': row[4],
-                'image': f"{image_url_prefix}/{row[4]}.JPG",
+                'image': f"{image_url_prefix}/{row[4]}.jpeg",
                 'title': row[0],
                 'description': f"{row[3]} - {row[1]} inches",
                 # 'publishDate': today.strftime('%d %B, %Y'),
