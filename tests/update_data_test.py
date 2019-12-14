@@ -36,4 +36,4 @@ def test_update_data():
         # Item append check.
         assert items[4]['title'] == 'TestArt'
         # IMAGE_URL_PREFIX env var check.
-        assert items[4]['image'] == 'https://test/static/5.JPG'
+        assert items[4]['image'] == 'https://test/static/5.jpeg'

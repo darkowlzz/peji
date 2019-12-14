@@ -42,7 +42,7 @@ class ShopGenerator(PageGenerator):
 <!-- Handlebars templates -->
 
 <!-- Template for header jumbotron -->
-<script id="jumbo-hb" type="text/x-handlebars-template">
+  <script id="jumbo-hb" type="text/x-handlebars-template">
     <div id="jumbo" class="jumbotron jumbotron-fluid text-center">
         <div class="container">
         <h1 id="title" class="display-4">{{title}}</h1>
@@ -52,10 +52,44 @@ class ShopGenerator(PageGenerator):
         <p id="title-sublead">{{title-sublead}}</p>
         </div>
     </div>
-    </script>
+  </script>
+
+<!-- Template for single item listing header navs -->
+  <script id="navs-hb" type="text/x-handlebars-template">
+      <nav class="navbar navbar-dark bg-dark">
+          <div class="d-flex flex-row">
+              <a class="navbar-brand d-flex align-item-center" href="#">
+                  <img class="mr-2" width="30" height="30" src="{{title-logo}}">
+                  <span>Back to {{title}}</span>
+              </a>
+          </div>
+          <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+      </nav>
+  </script>
+
+<!-- Template for 404 -->
+  <script id="404" type="text/x-handlebars-template">
+      <div class="text-center">
+          <br>
+          <h1>Item not found</h1>
+      </div>
+  </script>
+
+<!-- Template for single item listing -->
+  <script id="single-item-listing" type="text/x-handlebars-template">
+    <div class="text-center">
+      <br>
+      <img src="{{image}}" class="modal-content" id="{{id}}">
+      <br>
+      <h3>{{title}}</h3>
+      <p class="lead">{{description}}</p>
+      <p>{{currencySymbol}} {{price}} ({{currencyName}})</p>
+      <p>{{button}}</p>
+    </div>
+  </script>
 
 <!-- Template for a category and items list -->
-<script id="list-category-hb" type="text/x-handlebars-template">
+  <script id="list-category-hb" type="text/x-handlebars-template">
     <hr class="my-4">
     <h2 id="#" class="text-center text-uppercase font-weight-bold text-dark">{{category}}</h2>
     <!-- no-gutters removes the extra space between the children elements. -->
@@ -65,7 +99,11 @@ class ShopGenerator(PageGenerator):
         <div class="card mb-2 mt-2 ml-2 mr-2">
         <img src="{{image}}" class="card-img-top cover" id="{{id}}">
         <div class="card-body">
-            <h5 class="card-title text-center">{{title}}</h5>
+            <h5 class="card-title text-center">
+              <a href="#{{../catIndex}}-{{id}}">
+                {{title}}
+              </a>
+            </h5>
             <p class="card-text text-center">{{description}}</p>
             {{#if ../showPrice}}
             <p class="card-text text-center">
@@ -253,6 +291,12 @@ class ShopGenerator(PageGenerator):
         template = '''
 $(document).ready(function () {
 
+  // Reload the page when the hash changes because the individual item page is
+  // based on hash value.
+  window.onhashchange = function () {
+    window.location.reload()
+  }
+
   var modal = document.getElementById('myModal');
   var configURL = "config.json"
 
@@ -263,24 +307,86 @@ $(document).ready(function () {
       // Set page title.
       document.title = data["title"]
 
-      var jumboTemplate = $("#jumbo-hb").html()
-      var jumboTemplateScript = Handlebars.compile(jumboTemplate)
-      jumboHtml = jumboTemplateScript(data)
-      $("#jumbo-div").append(jumboHtml)
+      const url = new URL(window.location.href)
 
-      $("#jumbo").css("background", data["primary-background"])
-      $("body").css("background", data["secondary-background"])
-      // Set global text color.
-      $("body").css("color", data["textColor"])
+      if (url.hash) {
+        // Remove the first # character.
+        hash = url.hash.substr(1)
+        // Split the hash info into its components by splitting at "-".
+        let categoryID, itemID
+        [categoryID, itemID] = hash.split("-")
 
-      // Footer
-      var footerTemplate = $("#footer-hb").html()
-      var footerTemplateScript = Handlebars.compile(footerTemplate)
-      footerHtml = footerTemplateScript(data)
-      $("#footer").append(footerHtml)
+        var navsTemplate = $("#navs-hb").html()
+        var navsTemplateScript = Handlebars.compile(navsTemplate)
+        navsHtml = navsTemplateScript(data)
+        $("#jumbo-div").append(navsHtml)
 
-      // Build the body with catalog data.
-      buildCatalog(data)
+        // Build item view.
+        catalog = data["catalog"]
+        var category
+        // Get the wanted category.
+        for (const cat of catalog) {
+          if (cat["id"] == categoryID) {
+            category = cat
+            break
+          }
+        }
+        catDataURL = category['dataURL']
+
+        fetch(catDataURL)
+          .then(function (response) { return response.json(); })
+          .then(function (categoryData) {
+            categoryData['showPrice'] = data['showPrice']
+            categoryData['currencySymbol'] = data['currencySymbol']
+            categoryData['currencyName'] = data['currencyName']
+
+            var foundItem
+
+            for (const item of categoryData['items']) {
+              if (item['id'] == itemID) {
+                foundItem = item
+                break
+              }
+            }
+
+            // Check if the item is found.
+            if (typeof foundItem == 'undefined' || foundItem == null) {
+              // 404 - item not found
+              var notFoundTemplate = $("#404").html()
+              var notFoundTemplateScript = Handlebars.compile(notFoundTemplate)
+              notFoundHtml = notFoundTemplateScript()
+              $("#listing").append(notFoundHtml)
+            } else {
+              // Render the item.
+              foundItem['currencySymbol'] = data['currencySymbol']
+              foundItem['currencyName'] = data['currencyName']
+
+              var itemTemplate = $("#single-item-listing").html()
+              var itemTemplateScript = Handlebars.compile(itemTemplate, { noEscape: true })
+              itemHtml = itemTemplateScript(foundItem)
+              $("#listing").append(itemHtml)
+            }
+          })
+      } else {
+        var jumboTemplate = $("#jumbo-hb").html()
+        var jumboTemplateScript = Handlebars.compile(jumboTemplate)
+        jumboHtml = jumboTemplateScript(data)
+        $("#jumbo-div").append(jumboHtml)
+
+        $("#jumbo").css("background", data["primary-background"])
+        $("body").css("background", data["secondary-background"])
+        // Set global text color.
+        $("body").css("color", data["textColor"])
+
+        // Footer
+        var footerTemplate = $("#footer-hb").html()
+        var footerTemplateScript = Handlebars.compile(footerTemplate)
+        footerHtml = footerTemplateScript(data)
+        $("#footer").append(footerHtml)
+
+        // Build the body with catalog data.
+        buildCatalog(data)
+      }
     });
 
   // Get the <span> element that closes the modal
@@ -290,6 +396,13 @@ $(document).ready(function () {
   span.onclick = function () {
     modal.style.display = "none";
   }
+
+  // Listen for escape key down event and close the modal.
+  $(document).keydown(function (e) {
+    if (e.key == "Escape") {
+      modal.style.display = "none";
+    }
+  })
 })
 
 function buildCatalog(data) {
@@ -313,6 +426,8 @@ function buildCatalog(data) {
         categoryData['showPrice'] = data['showPrice']
         categoryData['currencySymbol'] = data['currencySymbol']
         categoryData['currencyName'] = data['currencyName']
+        // Add catalog index so that the hash link of the items can be formed.
+        categoryData['catIndex'] = catIndex
 
         var categoryTemplate = $("#list-category-hb").html()
         var categoryTemplateScript = Handlebars.compile(categoryTemplate, { noEscape: true })
