@@ -63,7 +63,6 @@ class ShopGenerator(PageGenerator):
                   <span>Back to {{title}}</span>
               </a>
           </div>
-          <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
       </nav>
   </script>
 
@@ -428,6 +427,15 @@ function buildCatalog(data) {
         categoryData['currencyName'] = data['currencyName']
         // Add catalog index so that the hash link of the items can be formed.
         categoryData['catIndex'] = catIndex
+
+        // Sort items in reverse order.
+        var items = categoryData['items']
+        items.sort(function (a, b) {
+          var aInt = parseInt(a['id'], 10)
+          var bInt = parseInt(b['id'], 10)
+          return bInt - aInt
+        })
+        categoryData['items'] = items
 
         var categoryTemplate = $("#list-category-hb").html()
         var categoryTemplateScript = Handlebars.compile(categoryTemplate, { noEscape: true })
