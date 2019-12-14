@@ -365,6 +365,12 @@ $(document).ready(function () {
               itemHtml = itemTemplateScript(foundItem)
               $("#listing").append(itemHtml)
             }
+
+            // Footer
+            var footerTemplate = $("#footer-hb").html()
+            var footerTemplateScript = Handlebars.compile(footerTemplate)
+            footerHtml = footerTemplateScript(data)
+            $("#footer").append(footerHtml)
           })
       } else {
         var jumboTemplate = $("#jumbo-hb").html()
