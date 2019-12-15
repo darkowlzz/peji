@@ -434,14 +434,9 @@ function buildCatalog(data) {
         // Add catalog index so that the hash link of the items can be formed.
         categoryData['catIndex'] = catIndex
 
-        // Sort items in reverse order.
+        // Reverse the order of items.
         var items = categoryData['items']
-        items.sort(function (a, b) {
-          var aInt = parseInt(a['id'], 10)
-          var bInt = parseInt(b['id'], 10)
-          return bInt - aInt
-        })
-        categoryData['items'] = items
+        categoryData['items'] = items.reverse()
 
         var categoryTemplate = $("#list-category-hb").html()
         var categoryTemplateScript = Handlebars.compile(categoryTemplate, { noEscape: true })
